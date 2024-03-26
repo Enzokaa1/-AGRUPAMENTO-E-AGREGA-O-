@@ -1,0 +1,39 @@
+Trabalho para fins academicos
+
+Etapa 1:
+
+CREATE TABLE Produtos (
+    id_produto INT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
+    preco DECIMAL(10,2) NOT NULL,
+    estoque INT NOT NULL,
+    perecivel BOOLEAN NOT NULL,
+    marca VARCHAR(50),
+    nacionalidade VARCHAR(50)
+);
+
+INSERT INTO Produtos (id_produto, nome, preco, estoque, perecivel, marca, nacionalidade) VALUES 
+(1, 'café', 2.25, 50, FALSE, 'nespresso', 'brasil'),
+(2, 'requeijão', 4.50, 20, TRUE, 'catupiry', 'argentina'),
+(3, 'arroz', 3.20, 80, FALSE, 'terrinha', 'russia'),
+(4, 'feijão', 3.75, 30, FALSE, 'feijoeira', 'colombia'),
+(5, 'carne', 8.00, 100, TRUE, 'friboi', 'argentina');
+
+Etapa 2:
+
+SELECT COUNT(*) AS 'Quantidade de Produtos' FROM Produtos;
+
+SELECT AVG(preco) AS 'Preço Médio' FROM Produtos;
+
+SELECT perecivel, AVG(preco) AS 'Preço Médio' FROM Produtos GROUP BY perecivel;
+
+SELECT nome, AVG(preco) AS 'Preço Médio' FROM Produtos GROUP BY nome;
+
+SELECT AVG(preco) AS 'Preço Médio', SUM(estoque) AS 'Total em Estoque' FROM Produtos;
+
+SELECT nome, marca, estoque FROM Produtos WHERE preco = (SELECT MAX(preco) FROM Produtos);
+
+SELECT * FROM Produtos WHERE preco > (SELECT AVG(preco) FROM Produtos);
+
+SELECT nacionalidade, COUNT(*) AS 'Quantidade' FROM Produtos GROUP BY nacionalidade;
+
